@@ -2,6 +2,13 @@
 
 var app;
 
+function speakString(str) {
+  var utterance = new SpeechSynthesisUtterance(str);
+  utterance.rate = 2;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+}
+
 function stringFromBytes(bytes) {
   return String.fromCharCode.apply(String, bytes);
 }
@@ -34,9 +41,4 @@ app = Elm.Main.init({
   node: document.getElementById("elm")
 });
 
-app.ports.speak.subscribe(function(str) {
-  var utterance = new SpeechSynthesisUtterance(str);
-  utterance.rate = 2;
-  speechSynthesis.cancel();
-  speechSynthesis.speak(utterance);
-});
+app.ports.speak.subscribe(speakString);
