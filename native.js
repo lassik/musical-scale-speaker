@@ -5,6 +5,8 @@ var app;
 function speakString(str) {
   var utterance = new SpeechSynthesisUtterance(str);
   utterance.rate = 2;
+  utterance.pitch = 1;
+  utterance.volume = 0.3;
   speechSynthesis.cancel();
   speechSynthesis.speak(utterance);
 }
